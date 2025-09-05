@@ -1579,3 +1579,22 @@ console.log('🎨 Teachers\' Day website JavaScript loaded successfully!');
 console.log('🎉 Amazing dynamic features activated!');
 console.log('✨ Interactive magic ready to use!');
 console.log('📱 Mobile optimizations ready!');
+
+window.addEventListener('load', function() {
+  const distance = document.body.scrollHeight - window.scrollY - window.innerHeight;
+  const duration = 3000; // 3 seconds for slow scroll
+  const start = window.scrollY;
+  const startTime = performance.now();
+
+  function smoothScroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, start + distance * progress);
+
+    if (progress < 1) {
+      requestAnimationFrame(smoothScroll);
+    }
+  }
+
+  requestAnimationFrame(smoothScroll);
+});
